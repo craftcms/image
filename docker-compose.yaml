@@ -9,16 +9,21 @@ services:
       APP_ID: app-id
       ENVIRONMENT: environment
       CP_TRIGGER: cp-trigger
-      DB_DRIVER: postgres
-      DB_SERVER: db-server
+      DB_DRIVER: pgsql
+      DB_SERVER: postgres-13-5432.database.nitro
       DB_PORT:  5432
-      DB_DATABASE: db-database
-      DB_USER: db-user
-      DB_PASSWORD: db-password
-      DB_SCHEMA: db-schema
-      DB_TABLE_PREFIX: db-table-prefix
+      DB_DATABASE: nitro
+      DB_USER: nitro
+      DB_PASSWORD: nitro
+      DB_SCHEMA: public
       SECURITY_KEY: security-key
     ports:
       - "8080:80"
     volumes:
-      - ./local:/app/web
+      - ./local:/app
+    networks:
+      - nitro-network
+networks:
+  nitro-network:
+    external: true
+

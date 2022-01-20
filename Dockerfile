@@ -27,8 +27,10 @@ RUN apt-get update \
         php8.0-curl \
         php8.0-gd \
         php8.0-iconv \
+        php8.0-intl \
         php8.0-mbstring \
         php8.0-mysql \
+        php8.0-opcache \
         php8.0-pgsql \
         php8.0-redis \
         php8.0-soap \
