@@ -32,6 +32,7 @@ RUN apt-get update \
         php8.0-soap \
         php8.0-xml \
         php8.0-zip \
+        php8.0-fpm \
         nginx \
     && apt-get clean \
     && chown -R appuser:appgroup /app/ \

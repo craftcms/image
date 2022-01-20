@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  app:
+    image: cloud-image:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_USER: user
+    ports:
+      - "8080:80"
+    volumes:
+      - ./local:/app/web
