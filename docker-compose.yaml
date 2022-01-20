@@ -6,7 +6,18 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      DB_USER: user
+      APP_ID: app-id
+      ENVIRONMENT: environment
+      CP_TRIGGER: cp-trigger
+      DB_DRIVER: postgres
+      DB_SERVER: db-server
+      DB_PORT:  5432
+      DB_DATABASE: db-database
+      DB_USER: db-user
+      DB_PASSWORD: db-password
+      DB_SCHEMA: db-schema
+      DB_TABLE_PREFIX: db-table-prefix
+      SECURITY_KEY: security-key
     ports:
       - "8080:80"
     volumes:

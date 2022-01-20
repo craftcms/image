@@ -6,7 +6,6 @@ RUN chmod +x /tmp/s6-overlay-${S6_ARCH}-installer && /tmp/s6-overlay-${S6_ARCH}-
 
 ENV DEBIAN_FRONTEND=noninteractive \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
-    S6_READ_ONLY_ROOT=1 \
     APPUSER_HOME="/app" \
     PUID=3000 \
     PGID=3000
