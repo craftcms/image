@@ -6,6 +6,7 @@ RUN chmod +x /tmp/s6-overlay-${S6_ARCH}-installer && /tmp/s6-overlay-${S6_ARCH}-
 
 ENV DEBIAN_FRONTEND=noninteractive \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
+    S6_READ_ONLY_ROOT=1 \
     APPUSER_HOME="/app" \
     PUID=3000 \
     PGID=3000
@@ -34,6 +35,7 @@ RUN apt-get update \
         php8.0-zip \
         php8.0-fpm \
         nginx \
+    && apt-get upgrade -y \
     && apt-get clean \
     && chown -R appuser:appgroup /app/ \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
