@@ -20,13 +20,26 @@ In order to add environment variables, the easiest method is to use the Docker `
 
 ### Example
 
+Create a file in the project directory named `zz-app-env.conf` (technically you can name this anything).
+
 ```conf
 # zz-app-env.conf
 env[CUSTOM_ENV] = $CUSTOM_ENV;
 env[HARDCODED_ENV] = hardcodedenv;
 ```
 
+> Note: You can use an existing environment variable that is in the system or hardcode a value.
+
+During the build process, copy the configuration file with the envs into the correct path.
+
 ```Dockerfile
 COPY zz-app-env.conf /etc/php/8.0/fpm/pool.d/
 ```
 
+## Testing
+
+In order to test this image with an existing app locally, follow these steps:
+
+1. install an app (Craft), into the `local` folder (the webroot `web` is still expected and not dynamic yet).
+2. Run the `make run` command which is a helper to `docker-compose up -d --build`.
+3. Visit `http://localhost:8080` to verify the app.
