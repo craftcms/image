@@ -21,6 +21,14 @@ services:
       - "8080:80"
     volumes:
       - ./local:/app
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "2048M"
+        reservations:
+          cpus: "1"
+          memory: "2048M"
     networks:
       - nitro-network
 networks:
