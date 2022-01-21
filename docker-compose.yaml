@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       APP_ID: app-id
-      ENVIRONMENT: environment
+      ENVIRONMENT: dev
       CP_TRIGGER: cp-trigger
       DB_DRIVER: pgsql
       DB_SERVER: postgres-13-5432.database.nitro
