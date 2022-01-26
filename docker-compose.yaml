@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      # PHP_OPCACHE_PRELOAD: "/app/storage/preload.php"
       SHOULD_NOT_SHOW: "true"
       APP_ID: app-id
       ENVIRONMENT: dev

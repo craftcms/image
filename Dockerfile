@@ -1,7 +1,6 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     APPUSER_HOME="/app" \
     PUID=3000 \
     PGID=3000
@@ -53,6 +52,7 @@ COPY etc/nginx/ /etc/nginx/
 
 # Apply PHP configuration files
 COPY etc/php/fpm/pool.d/ /etc/php/8.0/fpm/pool.d/
+COPY etc/php/fpm/opcache.ini /etc/php/8.0/fpm/conf.d/opcache.ini
 ENTRYPOINT [ "/init" ]
 
 HEALTHCHECK --start-period=5s \
