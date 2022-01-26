@@ -1,3 +1,0 @@
-#!/usr/bin/with-contenv bash
-su appuser
-exec /usr/sbin/php-fpm8.0 --nodaemonize
