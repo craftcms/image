@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      SHOULD_NOT_SHOW: "true"
       APP_ID: app-id
       ENVIRONMENT: dev
       CP_TRIGGER: cp-trigger
@@ -15,6 +16,7 @@ services:
       DB_DATABASE: nitro
       DB_USER: nitro
       DB_PASSWORD: nitro
+      DB_TABLE_PREFIX: nitro
       DB_SCHEMA: public
       SECURITY_KEY: security-key
     ports:
