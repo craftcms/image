@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ARG php_version=8.0
+ARG php_version
 
 ENV DEBIAN_FRONTEND=noninteractive \
     APPUSER_HOME="/app" \

@@ -10,7 +10,11 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ["8.0"]
     steps:
     - uses: actions/checkout@v2
     - name: Build the image
-      run: docker build . --file Dockerfile --tag cloud:$(date +%s)
+      run: docker build --build-arg php_version=${{ matrix.php-versions }} . --file Dockerfile --tag cloud:$(date +%s)
