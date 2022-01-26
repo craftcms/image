@@ -1,2 +1,2 @@
-#!/command/execlineb -P
+#!/usr/bin/with-contenv sh
 /usr/sbin/php-fpm8.0 --nodaemonize

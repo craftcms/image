@@ -16,6 +16,7 @@ services:
       DB_DATABASE: nitro
       DB_USER: nitro
       DB_PASSWORD: nitro
+      DB_TABLE_PREFIX: nitro
       DB_SCHEMA: public
       SECURITY_KEY: security-key
     ports:
