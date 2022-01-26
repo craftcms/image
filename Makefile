@@ -1,8 +1,14 @@
-IMAGE ?= cloud-image
+IMAGE ?= cloud
 PHP_VERSION ?= 8.0
 
 build:
-	docker build --build-arg php_version=${PHP_VERSION} --no-cache --progress plain --pull -t ${IMAGE} php${PHP_VERSION}
+	docker build \
+		--build-arg php_version=${PHP_VERSION} \
+		--no-cache \
+		--progress plain \
+		--pull \
+		--tag ${IMAGE} \
+		php${PHP_VERSION}
 dev: build
 	docker run --rm -it ${IMAGE} /bin/bash
 sizes:

@@ -38,8 +38,8 @@ COPY zz-app-env.conf /etc/php/8.0/fpm/pool.d/
 
 ## Testing
 
-In order to test this image with an existing app locally, follow these steps:
+In order to test this image locally, follow these steps:
 
-1. install an app (Craft), into the `local` folder (the webroot `web` is still expected and not dynamic yet). If its easier, create an index.php in `local/web` with `<?php phpinfo();` to verify content.
+1. Install an app (Craft), into the `local` folder of the version you are working on (e.g. `./php8.0/local`) (the webroot `web` is still expected and not dynamic yet). (_**Note**: If it is easier, create an `index.php` in `./php8.0/local/web` with `<?php phpinfo();` to verify configuration_).
 2. Run the `make run` command which is a helper to `docker-compose up -d --build`.
 3. Visit `http://localhost:8080` to verify the installation.
