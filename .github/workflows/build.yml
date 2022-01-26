@@ -17,4 +17,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the image
-      run: docker build --build-arg php_version=${{ matrix.php-versions }} . --file Dockerfile --tag cloud:${{ matrix.php-versions }}
+      run: PHP_VERSION=${{ matrix.php-versions }} make build
