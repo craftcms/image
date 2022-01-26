@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       # PHP_OPCACHE_PRELOAD: "/app/storage/preload.php"
-      SHOULD_NOT_SHOW: "true"
+      SHOULD_NOT_SHOW: "this"
       APP_ID: app-id
       ENVIRONMENT: dev
       CP_TRIGGER: cp-trigger
@@ -21,7 +21,7 @@ services:
       DB_SCHEMA: public
       SECURITY_KEY: security-key
     ports:
-      - "8080:80"
+      - 8080:80
     volumes:
       - ./local:/app
     deploy:
