@@ -44,6 +44,8 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v3.0.0.0-1/s
 RUN tar -C / -Jxpf /tmp/s6-overlay-noarch-3.0.0.0-1.tar.xz
 ADD https://github.com/just-containers/s6-overlay/releases/download/v3.0.0.0-1/s6-overlay-aarch64-3.0.0.0-1.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-aarch64-3.0.0.0-1.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.0.0.0-1/s6-overlay-symlinks-noarch-3.0.0.0-1.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-symlinks-noarch-3.0.0.0-1.tar.xz
 
 # Copy over S6 configurations
 COPY etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
@@ -52,6 +54,7 @@ COPY etc/nginx/ /etc/nginx/
 # Apply PHP configuration files
 COPY etc/php/fpm/pool.d/ /etc/php/8.0/fpm/pool.d/
 ENTRYPOINT [ "/init" ]
+
 HEALTHCHECK --start-period=5s \
   CMD curl -f http://127.0.0.1:9000/ping/ || exit 1
 EXPOSE 80

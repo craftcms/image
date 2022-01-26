@@ -1,3 +1,2 @@
 #!/command/execlineb -P
-su appuser
-exec /usr/sbin/php-fpm8.0 --nodaemonize
+/usr/sbin/php-fpm8.0 --nodaemonize

@@ -1,2 +1,2 @@
 #!/command/execlineb -P
-nginx
+/usr/sbin/nginx

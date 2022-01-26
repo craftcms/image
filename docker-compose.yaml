@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      SHOULD_NOT_SHOW: "true"
       APP_ID: app-id
       ENVIRONMENT: dev
       CP_TRIGGER: cp-trigger
