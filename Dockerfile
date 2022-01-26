@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+ARG php_version=8.0
+
 ENV DEBIAN_FRONTEND=noninteractive \
     APPUSER_HOME="/app" \
     PUID=3000 \
@@ -18,21 +20,21 @@ RUN apt-get update \
         ca-certificates \
         curl \
         unzip \
-        php8.0-cli \
-        php8.0-common \
-        php8.0-curl \
-        php8.0-gd \
-        php8.0-iconv \
-        php8.0-intl \
-        php8.0-mbstring \
-        php8.0-mysql \
-        php8.0-opcache \
-        php8.0-pgsql \
-        php8.0-redis \
-        php8.0-soap \
-        php8.0-xml \
-        php8.0-zip \
-        php8.0-fpm \
+        php${php_version}-cli \
+        php${php_version}-common \
+        php${php_version}-curl \
+        php${php_version}-gd \
+        php${php_version}-iconv \
+        php${php_version}-intl \
+        php${php_version}-mbstring \
+        php${php_version}-mysql \
+        php${php_version}-opcache \
+        php${php_version}-pgsql \
+        php${php_version}-redis \
+        php${php_version}-soap \
+        php${php_version}-xml \
+        php${php_version}-zip \
+        php${php_version}-fpm \
         nginx \
     && apt-get upgrade -y \
     && apt-get clean \
@@ -46,15 +48,14 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-aarch64-3.0.0.0-1.tar.xz
 ADD https://github.com/just-containers/s6-overlay/releases/download/v3.0.0.0-1/s6-overlay-symlinks-noarch-3.0.0.0-1.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-symlinks-noarch-3.0.0.0-1.tar.xz
 
-# Copy over S6 configurations
 COPY etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
 COPY etc/nginx/ /etc/nginx/
+COPY etc/php/fpm/pool.d/ /etc/php/${php_version}/fpm/pool.d/
+COPY etc/php/fpm/opcache.ini /etc/php/${php_version}/fpm/conf.d/opcache.ini
 
-# Apply PHP configuration files
-COPY etc/php/fpm/pool.d/ /etc/php/8.0/fpm/pool.d/
-COPY etc/php/fpm/opcache.ini /etc/php/8.0/fpm/conf.d/opcache.ini
 ENTRYPOINT [ "/init" ]
 
 HEALTHCHECK --start-period=5s \
   CMD curl -f http://127.0.0.1:9000/ping/ || exit 1
+
 EXPOSE 80
