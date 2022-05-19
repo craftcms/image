@@ -5,10 +5,11 @@ on:
   pull_request:
     branches: [main]
 defaults:
-  strategy:
-    fail-fast: true
-    matrix:
-      php-versions: ["8.1", "8.0"]
+  jobs:
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ["8.1", "8.0"]
 
 jobs:
   build:
