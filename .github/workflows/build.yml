@@ -17,3 +17,13 @@ jobs:
       run: make build
       env:
         PHP_VERSION: ${{ matrix.php-versions }}
+  push:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ["8.1", "8.0"]
+    steps:
+    - uses: actions/checkout@v2
