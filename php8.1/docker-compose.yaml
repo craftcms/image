@@ -10,18 +10,18 @@ services:
     environment:
       # PHP_OPCACHE_PRELOAD: "/app/storage/preload.php"
       SHOULD_NOT_SHOW: "this"
-      APP_ID: app-id
-      ENVIRONMENT: dev
-      CP_TRIGGER: cp-trigger
-      DB_DRIVER: pgsql
-      DB_SERVER: postgres-13-5432.database.nitro
-      DB_PORT:  5432
-      DB_DATABASE: nitro
-      DB_USER: nitro
-      DB_PASSWORD: nitro
-      DB_TABLE_PREFIX: nitro
-      DB_SCHEMA: public
-      SECURITY_KEY: security-key
+      CRAFT_APP_ID: app-id
+      CRAFT_ENVIRONMENT: dev
+      CRAFT_CP_TRIGGER: cp-trigger
+      CRAFT_DB_DRIVER: pgsql
+      CRAFT_DB_SERVER: postgres-13-5432.database.nitro
+      CRAFT_DB_PORT:  5432
+      CRAFT_DB_DATABASE: nitro
+      CRAFT_DB_USER: nitro
+      CRAFT_DB_PASSWORD: nitro
+      CRAFT_DB_TABLE_PREFIX: nitro
+      CRAFT_DB_SCHEMA: public
+      CRAFT_SECURITY_KEY: security-key
     ports:
       - 8080:80
     volumes:
