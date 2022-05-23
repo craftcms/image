@@ -1,4 +1,4 @@
-IMAGE ?= cloud
+IMAGE ?= craftcms/base
 PHP_VERSION ?= 8.0
 
 build:
@@ -7,7 +7,7 @@ build:
 		--no-cache \
 		--progress plain \
 		--pull \
-		--tag ${IMAGE} \
+		--tag ${IMAGE}:${PHP_VERSION} \
 		php${PHP_VERSION}
 dev: build
 	docker run --rm -it ${IMAGE} /bin/bash

@@ -20,6 +20,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         unzip \
+        php${php_version}-bcmath \
         php${php_version}-cli \
         php${php_version}-common \
         php${php_version}-curl \
