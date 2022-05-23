@@ -56,5 +56,7 @@ COPY etc/php/fpm/opcache.ini /etc/php/${php_version}/fpm/conf.d/opcache.ini
 
 ENTRYPOINT [ "/init" ]
 
+WORKDIR /app
+
 HEALTHCHECK --start-period=5s \
   CMD curl -f http://127.0.0.1:9000/ping/ || exit 1
