@@ -1,6 +1,8 @@
-# Cloud Image
+# Image
 
-This is the base image for the Craft Cloud images.
+> NOTE: These images are still a work-in-progress and should not be used in production.
+
+This repository contains the code for building container images for Craft CMS.
 
 ## S6 Overlay
 
@@ -10,7 +12,7 @@ These images also use the S6 overlay image which allows a different behavior tha
 
 ## Ports
 
-The only port exposed by the image is port 80 for nginx. Unlike the public images, the PHP-FPM port 9000 is not exposed.
+The only port exposed by the image is port 80 for nginx. Unlike the previous images, the PHP-FPM port 9000 is not exposed.
 
 ## Environment Variables
 
