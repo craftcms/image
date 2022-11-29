@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  app:
+    image: cloud-image:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - php_version=8.1
+    environment:
+      # PHP_OPCACHE_PRELOAD: "/app/storage/preload.php"
+      SHOULD_NOT_SHOW: "this"
+      CRAFT_APP_ID: app-id
+      CRAFT_ENVIRONMENT: dev
+      CRAFT_CP_TRIGGER: cp-trigger
+      CRAFT_DB_DRIVER: pgsql
+      CRAFT_DB_SERVER: postgres-13-5432.database.nitro
+      CRAFT_DB_PORT:  5432
+      CRAFT_DB_DATABASE: nitro
+      CRAFT_DB_USER: nitro
+      CRAFT_DB_PASSWORD: nitro
+      CRAFT_DB_TABLE_PREFIX: nitro
+      CRAFT_DB_SCHEMA: public
+      CRAFT_SECURITY_KEY: security-key
+    ports:
+      - 8080:80
+    volumes:
+      - ./local:/app
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "2048M"
+        reservations:
+          cpus: "1"
+          memory: "2048M"
+    networks:
+      - nitro-network
+networks:
+  nitro-network:
+    external: true
+

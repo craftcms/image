@@ -1,7 +1,14 @@
-IMAGE ?= cloud-image
+IMAGE ?= craftcms/base
+PHP_VERSION ?= 8.0
 
 build:
-	docker build --progress plain --pull -t ${IMAGE} .
+	docker build \
+		--build-arg php_version=${PHP_VERSION} \
+		--no-cache \
+		--progress plain \
+		--pull \
+		--tag ${IMAGE}:${PHP_VERSION} \
+		php${PHP_VERSION}
 dev: build
 	docker run --rm -it ${IMAGE} /bin/bash
 sizes:
