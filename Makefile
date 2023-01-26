@@ -16,3 +16,5 @@ sizes:
 	@docker image inspect ${IMAGE}:latest --format '{{.Size}}' | numfmt --to=si
 run:
 	docker-compose up --build
+create-project:
+	composer create-project craftcms/craft local
