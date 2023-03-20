@@ -42,11 +42,11 @@ RUN apt-get update \
     && chown -R appuser:appgroup /app/ \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-noarch.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.4.1/s6-overlay-noarch.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
-ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-aarch64.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.4.1/s6-overlay-aarch64.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-aarch64.tar.xz
-ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-symlinks-noarch.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.4.1/s6-overlay-symlinks-noarch.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-symlinks-noarch.tar.xz
 
 COPY etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d

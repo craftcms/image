@@ -1,5 +1,5 @@
 IMAGE ?= craftcms/base
-PHP_VERSION ?= 8.0
+PHP_VERSION ?= 8.2
 
 build:
 	docker build \
