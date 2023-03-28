@@ -36,7 +36,6 @@ RUN dnf install -y \
 # copy the files from the host to the container that we need
 COPY etc/supervisord.conf /etc/supervisord.conf
 COPY etc/supervisord.d /etc/supervisord.d
-# COPY etc/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY etc/php-fpm/php-fpm.conf /etc/php-fpm.conf
 
 # set the sockets and pid files to be writable by the appuser
@@ -45,10 +44,6 @@ RUN mkdir -p /var/run/php && touch /var/run/php/php-fpm.sock && chown -R appuser
 RUN touch /run/php-fpm.pid && chown -R appuser:appgroup /run/php-fpm.pid
 
 RUN touch /run/supervisord.pid && chown -R appuser:appgroup /run/supervisord.pid
-
-# RUN mkdir -p /var/log/nginx && chown -R apputser:appgroup /var/log/nginx
-
-RUN chown -R appuser:appgroup /var/lib/nginx && touch /run/nginx.pid && chown -R appuser:appgroup /run/nginx.pid
 
 WORKDIR /app
 
