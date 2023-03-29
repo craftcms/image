@@ -36,5 +36,10 @@ In order to update Fedora (e.g. Fedora 38 was released), follow these steps:
 
 1. Update the `FEDORA_VERSION` in the `Makefile` to the new version (e.g. `FEDORA_VERSION=38`). This will update the
    base image used for the build.
+2. Update the `PHP_VERSION` in the `Makefile` to the new version (e.g. `PHP_VERSION=8.2`). This will update the
+   PHP version installed in the image.
+3. Then, run `make build` to rebuild the image to test locally.
 
-Then, run `make build` to rebuild the image to test locally.
+> Note: The version of Fedora determines the version of PHP that is installed. For example, Fedora 38 uses PHP 8.2 and Fedora 37 uses 8.1.
+
+
