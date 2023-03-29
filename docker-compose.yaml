@@ -6,7 +6,7 @@ services:
       context: nginx
       dockerfile: Dockerfile
       args:
-        - php_version=8.1
+        - php_version=8.1 # this is passed to the FROM in the Dockerfile
     ports:
       - "8080:8080"
     volumes:

@@ -8,7 +8,7 @@ build-base:
 		--build-arg fedora_version=${FEDORA_VERSION} \
 		--no-cache \
 		--progress plain \
-		--tag ${IMAGE}:${PHP_VERSION} base
+		--tag ${IMAGE}:${PHP_VERSION} .
 
 dev: build-base
 	docker run --rm -it ${IMAGE} /bin/bash
