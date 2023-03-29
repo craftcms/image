@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  web:
+    image: craftcms/web:dev
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+      args:
+        - php_version=8.1
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./local:/app
