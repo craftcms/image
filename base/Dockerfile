@@ -1,4 +1,5 @@
-FROM fedora:37
+ARG fedora_version=37
+FROM fedora:${fedora_version}
 
 ARG userid=3000
 ARG groupid=3000

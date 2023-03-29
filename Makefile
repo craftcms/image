@@ -1,14 +1,15 @@
 IMAGE ?= craftcms/base
-PHP_VERSION ?= 8.0
+PHP_VERSION ?= 8.1
+FEDORA_VERSION ?= 37
 
 build:
 	docker build \
 		--build-arg php_version=${PHP_VERSION} \
+		--build-arg fedora_version=${FEDORA_VERSION} \
 		--no-cache \
 		--progress plain \
 		--pull \
-		--tag ${IMAGE}:${PHP_VERSION} \
-		php${PHP_VERSION}
+		--tag ${IMAGE}:${PHP_VERSION} base
 dev: build
 	docker run --rm -it ${IMAGE} /bin/bash
 sizes:

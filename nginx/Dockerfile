@@ -1,7 +1,5 @@
-FROM craftcms/base:8.1
-
-ARG userid=3000
-ARG groupid=3000
+ARG php_version
+FROM craftcms/base:${php_version}
 
 USER root
 
