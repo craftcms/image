@@ -21,6 +21,8 @@ RUN dnf install -y \
         php-cli \
         php-common \
         php-curl \
+        php-fpm \
+        php-gd \
         php-iconv \
         php-intl \
         php-mbstring \
@@ -28,9 +30,9 @@ RUN dnf install -y \
         php-opcache \
         php-pgsql \
         php-redis \
+        php-soap \
         php-xml \
         php-zip \
-        php-fpm \
     && dnf update -y \
     && dnf clean all -y
 

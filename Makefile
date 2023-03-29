@@ -8,7 +8,6 @@ build-base:
 		--build-arg fedora_version=${FEDORA_VERSION} \
 		--no-cache \
 		--progress plain \
-		--pull \
 		--tag ${IMAGE}:${PHP_VERSION} base
 
 dev: build-base
