@@ -2,7 +2,7 @@
 
 > NOTE: These images are still a work-in-progress and should not be used in production.
 
-This repository contains the code for building container images for Craft CMS applications.
+This repository hosts the code for building container images tailored for Craft CMS applications. Our aim is to offer an always up-to-date base image that developers can expand to run a web server of their choice. Our base image does not include an NGINX server and is exclusively configured to support running PHP-FPM. This setup enables developers to fully customize their container environments and maximize performance to meet their application needs (e.g. deploy with Caddy instead of NGINX). 
 
 ## Image Types
 
