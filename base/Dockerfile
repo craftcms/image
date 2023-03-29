@@ -1,4 +1,4 @@
-ARG fedora_version=37
+ARG fedora_version
 FROM fedora:${fedora_version}
 
 ARG userid=3000
