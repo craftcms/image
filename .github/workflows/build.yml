@@ -6,6 +6,7 @@ on:
     branches: [ main ]
 jobs:
   build:
+    name: Build, test, and push
     runs-on: ubuntu-latest
     env:
       PHP_VERSION: 8.1
