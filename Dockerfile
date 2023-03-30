@@ -23,6 +23,9 @@ RUN dnf install -y \
         php-curl \
         php-fpm \
         php-gd \
+        php-iconv \
+        php-intl \
+        php-mbstring \
         php-mysqlnd \
         php-opcache \
         php-pgsql \
@@ -30,7 +33,7 @@ RUN dnf install -y \
         php-soap \
         php-xml \
         php-zip \
-    && dnf upgrade -y \
+    && dnf update -y \
     && dnf clean all -y
 
 # copy the files from the host to the container that we need
