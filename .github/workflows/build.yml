@@ -7,20 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PHP_VERSION: 8.1
+      FEDORA_VERSION: 37
     steps:
       - uses: actions/checkout@v2
+
       - name: Build image
         run: make build
-  test:
-    runs-on: ubuntu-latest
-    needs:
-      - build
-    steps:
-      - uses: actions/checkout@v2
-  push:
-    runs-on: ubuntu-latest
-    needs:
-      - test
-      - build
-    steps:
-      - uses: actions/checkout@v2
+
+      - name: Server check
+        run: |
+          docker run --rm -it --entrypoint bash craftcms/base:${PHP_VERSION} -c "curl -Lsf https://raw.githubusercontent.com/craftcms/server-check/HEAD/check.sh | bash"
