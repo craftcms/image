@@ -23,7 +23,7 @@ RUN dnf install -y \
         php-curl \
         php-fpm \
         php-gd \
-        php-iconv \
+        # php-iconv \
         php-intl \
         php-mbstring \
         php-mysqlnd \
