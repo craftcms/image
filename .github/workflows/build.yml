@@ -18,4 +18,4 @@ jobs:
 
       - name: Server check
         run: |
-          docker run --rm -it --entrypoint bash craftcms/base:${PHP_VERSION} -c "curl -Lsf https://raw.githubusercontent.com/craftcms/server-check/HEAD/check.sh | bash"
+          docker run --rm --entrypoint bash craftcms/base:${PHP_VERSION} -c "curl -Lsf https://raw.githubusercontent.com/craftcms/server-check/HEAD/check.sh | bash"
