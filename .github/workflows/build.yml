@@ -6,35 +6,13 @@ on:
     branches: [ main ]
 jobs:
   build:
+    name: Build, test, and push
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ "8.2", "8.1", "8.0" ]
+    env:
+      PHP_VERSION: 8.1
+      FEDORA_VERSION: 37
     steps:
       - uses: actions/checkout@v2
+
       - name: Build image
         run: make build
-        env:
-          PHP_VERSION: ${{ matrix.php-versions }}
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ "8.2", "8.1", "8.0" ]
-    needs:
-      - build
-    steps:
-      - uses: actions/checkout@v2
-  push:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: [ "8.2", "8.1", "8.0" ]
-    needs:
-      - test
-      - build
-    steps:
-      - uses: actions/checkout@v2
