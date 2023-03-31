@@ -1,12 +1,12 @@
 name: Build
 on:
   push:
-    branches: [ 8.1 ]
+    branches: [ 8.2 ]
   schedule:
     - cron: '0 10 * * TUE'
 env:
-  PHP_VERSION: 8.1
-  FEDORA_VERSION: 37
+  PHP_VERSION: 8.2
+  FEDORA_VERSION: 38
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
