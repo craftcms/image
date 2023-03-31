@@ -2,8 +2,8 @@ name: Build
 on:
   push:
     branches: [ 8.1 ]
-  pull_request:
-    branches: [ 8.1 ]
+  schedule:
+    - cron: '0 10 * * TUE'
 env:
   PHP_VERSION: 8.1
   FEDORA_VERSION: 37
@@ -21,6 +21,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ env.PHP_VERSION }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
