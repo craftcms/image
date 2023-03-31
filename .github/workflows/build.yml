@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/craftcms/base:${{ env.PHP_VERSION }}
+          images: ghcr.io/craftcms/base
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
