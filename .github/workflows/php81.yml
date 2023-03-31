@@ -13,7 +13,7 @@ env:
 jobs:
 
   php81:
-    name: Build PHP ${{ env.PHP_VERSION }}
+    name: Build image
     runs-on: ubuntu-latest
     permissions:
       contents: read
