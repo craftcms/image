@@ -1,9 +1,9 @@
 name: Build
 on:
   push:
-    branches: [ main ]
+    branches: [ 8.1 ]
   pull_request:
-    branches: [ main ]
+    branches: [ 8.1 ]
 env:
   PHP_VERSION: 8.1
   FEDORA_VERSION: 37
@@ -12,8 +12,8 @@ env:
 
 jobs:
 
-  build:
-    name: Build, test, and push
+  php81:
+    name: Build, test, and push PHP 8.1
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -38,10 +38,11 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: .
-          push: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/') }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             php_version=${{ env.PHP_VERSION }}
             fedora_version=${{ env.FEDORA_VERSION }}
+          context: .
+          labels: ${{ steps.meta.outputs.labels }}
+          pull: true
+          push: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/') }}
+          tags: ${{ steps.meta.outputs.tags }}
