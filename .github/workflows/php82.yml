@@ -12,7 +12,7 @@ env:
 
 jobs:
 
-  php81:
+  build:
     name: Build image
     runs-on: ubuntu-latest
     permissions:
