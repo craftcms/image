@@ -16,6 +16,7 @@ RUN mkdir -p /app && chown -R appuser:appgroup /app
 RUN dnf install -y \
         curl \
         unzip \
+        nginx \
         supervisor \
         php-bcmath \
         php-cli \
