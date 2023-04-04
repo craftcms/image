@@ -13,7 +13,7 @@ RUN groupadd -r -g ${groupid} appgroup \
 
 RUN mkdir -p /app && chown -R appuser:appgroup /app
 
-RUN dnf install -y \
+RUN dnf --disablerepo=fedora-cisco-openh264 install -y \
         curl \
         unzip \
         nginx \
@@ -34,8 +34,8 @@ RUN dnf install -y \
         php-soap \
         php-xml \
         php-zip \
-    && dnf update -y \
-    && dnf clean all -y
+    && dnf --disablerepo=fedora-cisco-openh264 update -y \
+    && dnf --disablerepo=fedora-cisco-openh264 clean all -y
 
 # copy the files from the host to the container that we need
 COPY etc/supervisord.conf /etc/supervisord.conf
