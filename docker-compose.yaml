@@ -3,7 +3,7 @@ services:
   web:
     image: craftcms/web:dev
     build:
-      context: nginx
+      context: examples/nginx
       dockerfile: Dockerfile
       args:
         - php_version=8.1 # this is passed to the FROM in the Dockerfile
