@@ -1,4 +1,4 @@
-IMAGE ?= craftcms/base
+IMAGE ?= craftcms/image
 PHP_VERSION ?= 8.1
 FEDORA_VERSION ?= 37
 
