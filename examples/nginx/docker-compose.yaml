@@ -3,10 +3,11 @@ services:
   web:
     image: craftcms/web:dev
     build:
-      context: examples/nginx
+      context: .
       dockerfile: Dockerfile
       args:
-        - php_version=8.1 # this is passed to the FROM in the Dockerfile
+        - php_version=8.2 # this is passed to the FROM in the Dockerfile
+        - image=craftcms/image
     ports:
       - "8080:8080"
     volumes:

@@ -1,5 +1,5 @@
 IMAGE ?= craftcms/image
-PHP_VERSION ?= 8.1
+PHP_VERSION ?= 8.2
 FEDORA_VERSION ?= 37
 
 build:

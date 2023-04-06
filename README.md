@@ -4,12 +4,11 @@
 
 This repository hosts the code for building container images tailored for Craft CMS applications. Our aim is to offer an always up-to-date base image that developers can expand to run a web server of their choice. Our base image does not include an NGINX server and is exclusively configured to support running PHP-FPM. This setup enables developers to fully customize their container environments and maximize performance to meet their application needs (e.g. deploy with Caddy instead of NGINX). 
 
-## Image Types
+## Image
 
 This repository contains the following image types:
 
-1. `base` - The base image for all other images that installs PHP and creates a non-root user.
-2. `web` - The web image that extends the base image and installs Nginx.
+1. `image` - The base image for all other images that installs PHP and creates a non-root user. This image also installs supervisord and NGINX but does not configure NGINX.
 
 ## Adding a new service to supervisor
 
@@ -20,19 +19,23 @@ In order to add a new service to supervisor, follow these steps:
    e.g. `COPY ./supervisor.d/craft-worker.ini /etc/supervisor.d/craft-worker.ini`).
 3. Supervisor will automatically pick up the new service and start it.
 
+## Examples
+
+This repository contains examples for extending the container image to adapt to your use case. The examples are located in the `examples` folder.
+
 ## Testing
 
 In order to test this image locally, follow these steps:
 
-1. Install an app (Craft), into the `local` folder (the
+1. Install an app (Craft), into the `examples/nginx/local` folder (the
    webroot `web` is still expected and not dynamic yet). (_**Note**: If it is easier, create an `index.php`
-   in `./local/web` with `<?php phpinfo();` to verify configuration_).
+   in `./examples/nginx/local/web` with `<?php phpinfo();` to verify configuration_).
 2. Run the `make run` command which is a helper to `docker-compose up -d --build`.
 3. Visit `http://localhost:8080` to verify the installation.
 
 ## Customizing PHP Settings
 
-Some PHP settings may be customized by setting environment variables for the `php-fpm` or `cli` images.
+Some PHP settings may be customized by setting environment variables for the image.
 
 In this example, we’re setting the PHP memory limit to `512M` rather than the default `256M`:
 
@@ -46,7 +49,7 @@ services:
     env_file: .env
     environment:
       PHP_MEMORY_LIMIT: 512M
-  # ...
+  # ... nginx and database services
 ```
 
 ### Customizable Settings
