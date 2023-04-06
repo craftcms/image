@@ -1,6 +1,5 @@
-ARG image=ghcr.io/craftcms/image
 ARG php_version
-FROM ${image}:${php_version}
+FROM ghcr.io/craftcms/image:${php_version}
 
 USER root
 
