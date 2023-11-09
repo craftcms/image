@@ -6,7 +6,7 @@ on:
     - cron: '0 10 * * TUE'
 env:
   PHP_VERSION: 8.2
-  FEDORA_VERSION: 38
+  FEDORA_VERSION: 39
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
