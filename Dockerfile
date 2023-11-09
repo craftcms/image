@@ -85,6 +85,6 @@ WORKDIR /app
 USER appuser
 
 # check the server configuration to make sure it can run Craft CMS
-RUN curl -Lsf https://raw.githubusercontent.com/craftcms/server-check/HEAD/check.sh | bash
+RUN curl -Lsf https://raw.githubusercontent.com/craftcms/server-check/2.1/check.sh | bash
 
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
