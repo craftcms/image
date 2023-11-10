@@ -6,7 +6,7 @@ on:
     - cron: '0 10 * * TUE'
 env:
   PHP_VERSION: 8.2
-  DEBIAN_VERSION: 39
+  DEBIAN_VERSION: 12
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
