@@ -1,6 +1,7 @@
 ARG debian_version
 FROM debian:${debian_version}
 
+ARG php_version
 ARG userid=3000
 ARG groupid=3000
 
@@ -72,6 +73,9 @@ COPY etc/supervisord.conf /etc/supervisord.conf
 COPY etc/supervisord.d /etc/supervisord.d
 COPY etc/php-fpm/php-fpm.conf /etc/php-fpm.conf
 COPY etc/php.d/60-craftcms.ini /etc/php.d/60-craftcms.ini
+
+# set a friendly path for php-fpm that does not have the version
+RUN update-alternatives --install /usr/sbin/php-fpm php-fpm /usr/sbin/php-fpm${php_version} 1
 
 # set the sockets and pid files to be writable by the appuser
 RUN mkdir -p /var/run/php && touch /var/run/php/php-fpm.sock && chown -R appuser:appgroup /var/run/php
