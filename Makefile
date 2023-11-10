@@ -21,4 +21,4 @@ run: build
 	docker-compose up --build
 
 create-project:
-	composer create-project craftcms/craft local
+	composer create-project craftcms/craft examples/craftcms/local

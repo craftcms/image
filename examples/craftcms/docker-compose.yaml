@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  web:
+    image: craftcms/web:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - php_version=8.2 # this is passed to the FROM in the Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./local:/app
