@@ -6,7 +6,7 @@ on:
     - cron: '0 10 * * TUE'
 env:
   PHP_VERSION: 8.2
-  FEDORA_VERSION: 39
+  DEBIAN_VERSION: 39
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -48,7 +48,7 @@ jobs:
         with:
           build-args: |
             php_version=${{ env.PHP_VERSION }}
-            fedora_version=${{ env.FEDORA_VERSION }}
+            debian_version=${{ env.DEBIAN_VERSION }}
           context: .
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
