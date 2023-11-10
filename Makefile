@@ -1,11 +1,11 @@
 IMAGE ?= craftcms/image
 PHP_VERSION ?= 8.2
-FEDORA_VERSION ?= 39
+DEBIAN_VERSION ?= 12
 
 build:
 	docker build \
 		--build-arg php_version=${PHP_VERSION} \
-		--build-arg fedora_version=${FEDORA_VERSION} \
+		--build-arg debian_version=${DEBIAN_VERSION} \
 		--no-cache \
 		--progress plain \
 		--tag ${IMAGE}:${PHP_VERSION} .

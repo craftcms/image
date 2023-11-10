@@ -1,5 +1,5 @@
-ARG fedora_version
-FROM fedora:${fedora_version}
+ARG debian_version
+FROM debian:${debian_version}
 
 ARG userid=3000
 ARG groupid=3000
@@ -34,16 +34,15 @@ ENV PHP_OPCACHE_MAX_WASTED_PERCENTAGE=$PHP_OPCACHE_MAX_WASTED_PERCENTAGE_ARG
 ENV PHP_OPCACHE_INTERNED_STRINGS_BUFFER=$PHP_OPCACHE_INTERNED_STRINGS_BUFFER_ARG
 ENV PHP_OPCACHE_FAST_SHUTDOWN=$PHP_OPCACHE_FAST_SHUTDOWN_ARG
 
-# speed up dnf (https://ostechnix.com/how-to-speed-up-dnf-package-manager-in-fedora/)
-RUN echo 'max_parallel_downloads=10' >> /etc/dnf/dnf.conf
-
 # add the application user
 RUN groupadd -r -g ${groupid} appgroup \
     && useradd --no-create-home --no-log-init --system --home-dir=/app --uid ${userid} --gid ${groupid} appuser
 
 RUN mkdir -p /app && chown -R appuser:appgroup /app
 
-RUN dnf --disablerepo=fedora-cisco-openh264 install -y \
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt update -y  \
+    && apt install -y \
         curl \
         unzip \
         nginx \
@@ -64,8 +63,9 @@ RUN dnf --disablerepo=fedora-cisco-openh264 install -y \
         php-soap \
         php-xml \
         php-zip \
-    && dnf --disablerepo=fedora-cisco-openh264 update -y \
-    && dnf --disablerepo=fedora-cisco-openh264 clean all -y
+    && apt upgrade -y \
+    && apt autoremove -y \
+    && apt clean -y
 
 # copy the files from the host to the container that we need
 COPY etc/supervisord.conf /etc/supervisord.conf
