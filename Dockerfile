@@ -79,9 +79,7 @@ RUN update-alternatives --install /usr/sbin/php-fpm php-fpm /usr/sbin/php-fpm${p
 
 # set the sockets and pid files to be writable by the appuser
 RUN mkdir -p /var/run/php && touch /var/run/php/php-fpm.sock && chown -R appuser:appgroup /var/run/php
-
 RUN touch /run/php-fpm.pid && chown -R appuser:appgroup /run/php-fpm.pid
-
 RUN touch /run/supervisord.pid && chown -R appuser:appgroup /run/supervisord.pid
 
 WORKDIR /app

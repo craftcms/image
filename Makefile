@@ -6,12 +6,13 @@ build:
 	docker build \
 		--build-arg php_version=${PHP_VERSION} \
 		--build-arg debian_version=${DEBIAN_VERSION} \
-		--no-cache \
 		--progress plain \
 		--tag ${IMAGE}:${PHP_VERSION} .
 
 dev: build
-	docker run --rm -it ${IMAGE} /bin/bash
+	docker run --rm -it ${IMAGE}:${PHP_VERSION} /bin/bash
+php-fpm: build
+	docker run --rm -it ${IMAGE}:${PHP_VERSION}
 
 sizes:
 	@echo "Size of ${IMAGE}:"
