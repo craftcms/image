@@ -1,12 +1,12 @@
-name: Build 8.1 Image
+name: Build 8.3 Image
 on:
   push:
-    branches: [ 8.1 ]
+    branches: [ 8.3 ]
   schedule:
     - cron: '0 10 * * TUE'
 env:
-  PHP_VERSION: 8.1
-  FEDORA_VERSION: 37
+  PHP_VERSION: 8.3
+  UBUNTU_VERSION: 22.04
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -48,7 +48,7 @@ jobs:
         with:
           build-args: |
             php_version=${{ env.PHP_VERSION }}
-            fedora_version=${{ env.FEDORA_VERSION }}
+            ubuntu_version=${{ env.UBUNTU_VERSION }}
           context: .
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
