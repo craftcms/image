@@ -1,5 +1,5 @@
-ARG debian_version
-FROM debian:${debian_version}
+ARG ubuntu_version
+FROM ubuntu:${ubuntu_version}
 
 ARG php_version
 ARG userid=3000
@@ -42,28 +42,31 @@ RUN groupadd -r -g ${groupid} appgroup \
 RUN mkdir -p /app && chown -R appuser:appgroup /app
 
 RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt update -y \
+    && apt install -y -q software-properties-common \
+    && add-apt-repository ppa:ondrej/php \
     && apt update -y  \
     && apt install -y \
         curl \
         unzip \
         nginx \
         supervisor \
-        php-bcmath \
-        php-cli \
-        php-common \
-        php-curl \
-        php-fpm \
-        php-gd \
-        php-iconv \
-        php-intl \
-        php-mbstring \
-        php-mysqlnd \
-        php-opcache \
-        php-pgsql \
-        php-redis \
-        php-soap \
-        php-xml \
-        php-zip \
+        php${php_version}-bcmath \
+        php${php_version}-cli \
+        php${php_version}-common \
+        php${php_version}-curl \
+        php${php_version}-fpm \
+        php${php_version}-gd \
+        php${php_version}-iconv \
+        php${php_version}-intl \
+        php${php_version}-mbstring \
+        php${php_version}-mysqlnd \
+        php${php_version}-opcache \
+        php${php_version}-pgsql \
+        php${php_version}-redis \
+        php${php_version}-soap \
+        php${php_version}-xml \
+        php${php_version}-zip \
     && apt upgrade -y \
     && apt autoremove -y \
     && apt clean -y
