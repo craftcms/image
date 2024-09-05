@@ -1,8 +1,8 @@
 # Image
 
-> NOTE: These images are still a work-in-progress and should not be used in production.
+This repository hosts the code for building container images tailored for Craft CMS applications. Our aim is to offer an always up-to-date base image that developers can expand to run a web server of their choice. 
 
-This repository hosts the code for building container images tailored for Craft CMS applications. Our aim is to offer an always up-to-date base image that developers can expand to run a web server of their choice. Our base image does not include an NGINX server and is exclusively configured to support running PHP-FPM. This setup enables developers to fully customize their container environments and maximize performance to meet their application needs (e.g. deploy with Caddy instead of NGINX). 
+> Our base image does not include an NGINX server and is exclusively configured to support running PHP-FPM. This setup enables developers to fully customize their container environments and maximize performance to meet their application needs (e.g. deploy with Caddy instead of NGINX). 
 
 ## Image
 
@@ -43,7 +43,7 @@ In this example, we’re setting the PHP memory limit to `512M` rather than the 
 version: "3.6"
 services:
   php-fpm:
-    image: ghcr.io/craftcms/image:8.1
+    image: ghcr.io/craftcms/image:8.2
     volumes:
       - .:/app
     env_file: .env
@@ -70,16 +70,12 @@ services:
 | `opcache.interned_strings_buffer` | `PHP_OPCACHE_INTERNED_STRINGS_BUFFER` | `16`          |
 | `opcache.fast_shutdown`           | `PHP_OPCACHE_FAST_SHUTDOWN`           | `1`           |
 
-## Upgrading Fedora
+## Upgrading Ubuntu
 
-In order to update Fedora (e.g. Fedora 38 was released), follow these steps:
+In order to update Ubuntu (e.g. Ubuntu 24.04 was released), follow these steps:
 
-1. Update the `FEDORA_VERSION` in the `Makefile` to the new version (e.g. `FEDORA_VERSION=38`). This will update the
+1. Update the `UBUNTU_VERSION` in the `Makefile` to the new version (e.g. `UBUNTU_VERSION=13`). This will update the
    base image used for the build.
 2. Update the `PHP_VERSION` in the `Makefile` to the new version (e.g. `PHP_VERSION=8.2`). This will update the
    PHP version installed in the image.
 3. Then, run `make build` to rebuild the image to test locally.
-
-> Note: The version of Fedora determines the version of PHP that is installed. For example, Fedora 38 uses PHP 8.2 and Fedora 37 uses 8.1.
-
-

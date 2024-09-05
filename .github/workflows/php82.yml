@@ -6,7 +6,7 @@ on:
     - cron: '0 10 * * TUE'
 env:
   PHP_VERSION: 8.2
-  FEDORA_VERSION: 38
+  UBUNTU_VERSION: 22.04
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -48,10 +48,10 @@ jobs:
         with:
           build-args: |
             php_version=${{ env.PHP_VERSION }}
-            fedora_version=${{ env.FEDORA_VERSION }}
+            ubuntu_version=${{ env.UBUNTU_VERSION }}
           context: .
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
           pull: true
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
