@@ -1,5 +1,5 @@
 IMAGE ?= craftcms/image
-PHP_VERSION ?= 8.2
+PHP_VERSION ?= 8.3
 UBUNTU_VERSION ?= 22.04
 TAG ?= ${PHP_VERSION}
 

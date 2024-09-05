@@ -75,7 +75,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 COPY etc/supervisord.conf /etc/supervisord.conf
 COPY etc/supervisord.d /etc/supervisord.d
 COPY etc/php-fpm/php-fpm.conf /etc/php-fpm.conf
-COPY etc/php.d/60-craftcms.ini /etc/php.d/60-craftcms.ini
+COPY etc/php.d/60-craftcms.ini /etc/php/${php_version}/fpm/conf.d/60-craftcms.ini
+COPY etc/php.d/60-craftcms.ini /etc/php/${php_version}/cli/conf.d/60-craftcms.ini
 
 # set a friendly path for php-fpm that does not have the version
 RUN update-alternatives --install /usr/sbin/php-fpm php-fpm /usr/sbin/php-fpm${php_version} 1
