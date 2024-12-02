@@ -10,7 +10,12 @@ env:
 
 jobs:
   tag:
+    name: Tag actual PHP versions
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Get the PHP version
         id: php_version
@@ -19,10 +24,11 @@ jobs:
           IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
         run: |
           echo "actual_version=$(docker run --rm --entrypoint sh ${IMAGE} -c 'php -v | head -n 1 | cut -d " " -f 2')" >> "$GITHUB_OUTPUT"
-      - name: Set up PHP version
-        id: set_php_version
+      - name: Tag the image with the actual PHP version
         env:
-          actual_version: ${{ steps.php_version.outputs.actual_version }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
+          ACTUAL_VERSION: ${{ steps.php_version.outputs.actual_version }}
         run: |
-          echo "${actual_version}"
+          docker tag ${IMAGE} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${ACTUAL_VERSION}
+
 
