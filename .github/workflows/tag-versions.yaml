@@ -18,7 +18,7 @@ jobs:
           PHP_VERSION: ${{ env.PHP_VERSION }}
           IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
         run: |
-          echo "actual_version=${$(docker run --rm --entrypoint sh ${IMAGE} -c 'php -v | head -n 1 | cut -d " " -f 2')}" >> "$GITHUB_OUTPUT"
+          echo "actual_version=$(docker run --rm --entrypoint sh ${IMAGE} -c 'php -v | head -n 1 | cut -d " " -f 2')\n" >> "$GITHUB_OUTPUT"
       - name: Set up PHP version
         id: set_php_version
         env:
