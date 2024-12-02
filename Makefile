@@ -1,12 +1,10 @@
 IMAGE ?= craftcms/image
 PHP_VERSION ?= 8.3
-UBUNTU_VERSION ?= 22.04
 TAG ?= ${PHP_VERSION}
 
 build:
 	docker build \
 		--build-arg php_version=${PHP_VERSION} \
-		--build-arg ubuntu_version=${UBUNTU_VERSION} \
 		--progress plain \
 		--tag ${IMAGE}:${TAG} .
 
@@ -26,4 +24,4 @@ create-project:
 	composer create-project craftcms/craft examples/craftcms/local
 
 shell:
-	docker run --rm -it ubuntu:${UBUNTU_VERSION} /bin/bash
+	docker run --rm -it ubuntu:22.04 /bin/bash

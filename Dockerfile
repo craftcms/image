@@ -1,5 +1,4 @@
-ARG ubuntu_version
-FROM ubuntu:${ubuntu_version}
+FROM ubuntu:22.04
 
 ARG php_version
 ARG userid=3000
