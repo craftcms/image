@@ -29,6 +29,6 @@ jobs:
           IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
           ACTUAL_VERSION: ${{ steps.php_version.outputs.actual_version }}
         run: |
-          docker tag ${IMAGE} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${ACTUAL_VERSION}
+          docker tag ${{ env.IMAGE }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.ACTUAL_VERSION }}
 
 
