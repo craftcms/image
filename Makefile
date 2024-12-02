@@ -1,19 +1,19 @@
 IMAGE ?= craftcms/image
-PHP_VERSION ?= 8.3
-UBUNTU_VERSION ?= 22.04
+PHP_VERSION ?= 8.4
 TAG ?= ${PHP_VERSION}
 
 build:
 	docker build \
 		--build-arg php_version=${PHP_VERSION} \
-		--build-arg ubuntu_version=${UBUNTU_VERSION} \
 		--progress plain \
 		--tag ${IMAGE}:${TAG} .
 
 dev: build
-	docker run --rm -it ${IMAGE}:${PHP_VERSION} /bin/bash
+	docker run --rm -it --entrypoint /bin/bash ${IMAGE}:${PHP_VERSION}
 php-fpm: build
 	docker run --rm -it ${IMAGE}:${PHP_VERSION}
+version:
+	@docker run --rm --entrypoint sh ${IMAGE}:${PHP_VERSION} -c 'php -v | head -n 1 | cut -d " " -f 2'
 
 sizes:
 	@echo "Size of ${IMAGE}:"
@@ -24,6 +24,3 @@ run: build
 
 create-project:
 	composer create-project craftcms/craft examples/craftcms/local
-
-shell:
-	docker run --rm -it ubuntu:${UBUNTU_VERSION} /bin/bash
