@@ -1,0 +1,28 @@
+name: Tag actual PHP versions
+on:
+  workflow_dispatch:
+    branches: [ 8.4 ]
+
+env:
+  PHP_VERSION: 8.4
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the PHP version
+        id: php_version
+        env:
+          PHP_VERSION: ${{ env.PHP_VERSION }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
+        run: |
+          echo "actual_version=${$(docker run --rm --entrypoint sh ${IMAGE} -c 'php -v | head -n 1 | cut -d " " -f 2')}" >> "$GITHUB_OUTPUT"
+      - name: Set up PHP version
+        id: set_php_version
+        env:
+          actual_version: ${{ steps.php_version.outputs.actual_version }}
+        run: |
+          echo "${actual_version}"
+
