@@ -1,27 +1,34 @@
-name: Tag actual PHP versions
+name: Tag w/ PHP versions
 on:
   workflow_dispatch:
-    branches: [ 8.4 ]
+    branches: [ 8.4, 8.3, 8.2 ]
+  schedule:
+    - cron: '0 10 * * WED'
 
 env:
-  PHP_VERSION: 8.4
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   tag:
-    name: Tag actual PHP versions
+    name: Tag images with PHP versions
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        php_version:
+          - 8.4
+          - 8.3
+          - 8.2
 
     steps:
       - name: Get PHP version
         id: php_version
         env:
-          PHP_VERSION: ${{ env.PHP_VERSION }}
-          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
+          PHP_VERSION: ${{ matrix.php_version }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.php_version }}
         run: |
           echo "actual_version=$(docker run --rm --entrypoint sh ${IMAGE} -c 'php -v | head -n 1 | cut -d " " -f 2')" >> "$GITHUB_OUTPUT"
       
@@ -34,7 +41,7 @@ jobs:
 
       - name: Tag and push
         env:
-          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.PHP_VERSION }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.php_version }}
           ACTUAL_VERSION: ${{ steps.php_version.outputs.actual_version }}
         run: |
           docker image tag ${{ env.IMAGE }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.ACTUAL_VERSION }}
