@@ -1,4 +1,4 @@
-name: Build 8.4 Image
+name: Build 8.4
 on:
   push:
     branches: [ 8.4 ]
