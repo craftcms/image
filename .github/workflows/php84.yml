@@ -4,6 +4,7 @@ on:
     branches: [ 8.4 ]
   schedule:
     - cron: '0 10 * * TUE'
+  workflow_dispatch:
 env:
   PHP_VERSION: 8.4
   REGISTRY: ghcr.io

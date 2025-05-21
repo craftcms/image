@@ -4,6 +4,7 @@ on:
     branches: [ 8.2 ]
   schedule:
     - cron: '0 10 * * TUE'
+  workflow_dispatch:
 env:
   PHP_VERSION: 8.2
   UBUNTU_VERSION: 22.04
