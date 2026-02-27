@@ -1,3 +1,5 @@
+> Note: This repository and these images are archived. See [Docker in Production](https://craftcms.com/knowledge-base/docker-in-production) and [Local Development with Docker](https://craftcms.com/knowledge-base/docker-for-local-development) for alternatives.
+
 # Image
 
 This repository hosts the code for building container images tailored for Craft CMS applications. Our aim is to offer an always up-to-date base image that developers can expand to run a web server of their choice. 
