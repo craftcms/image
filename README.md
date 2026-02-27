@@ -1,4 +1,5 @@
-> Note: This repository and these images are archived. See [Docker in Production](https://craftcms.com/knowledge-base/docker-in-production) and [Local Development with Docker](https://craftcms.com/knowledge-base/docker-for-local-development) for alternatives.
+> [!NOTE]
+> This repository and these images are archived. See [Docker in Production](https://craftcms.com/knowledge-base/docker-in-production) and [Local Development with Docker](https://craftcms.com/knowledge-base/docker-for-local-development) for alternatives.
 
 # Image
 
